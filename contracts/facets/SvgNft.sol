@@ -5,7 +5,7 @@ pragma solidity ^0.8.4;
 import "../utils/Strings.sol";
 import "./ERC721URIStorage.sol";
 import "../utils/Counters.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
+import "../libraries/Ownable.sol";
 
 /* 
     A library that provides a function for encoding some bytes in base64
