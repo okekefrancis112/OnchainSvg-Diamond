@@ -1,5 +1,5 @@
 require("dotenv").config({ path: ".env" });
-import "@nomicfoundation/hardhat-toolbox";
+
 import "@nomiclabs/hardhat-ethers";
 import "@nomiclabs/hardhat-etherscan";
 require("@nomiclabs/hardhat-ethers")

@@ -2,7 +2,7 @@
 // OpenZeppelin Contracts (last updated v4.7.0) (token/ERC721/extensions/ERC721URIStorage.sol)
 pragma solidity ^0.8.0;
 import "../libraries/AppStorage.sol";
-import "../interfaces/ERC721.sol";
+import "../utils/ERC721.sol";
 
 /**
  * @dev ERC721 token with storage based token URI management.

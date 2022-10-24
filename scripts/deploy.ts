@@ -74,7 +74,7 @@ export async function deployDiamond() {
   DiamondAddress = diamond.address;
 
   // Get 'OnChainNFT' contract
-  const nftContractFactory = await hre.ethers.getContractFactory('OnChainNFT');
+  const nftContractFactory = await ethers.getContractFactory('OnChainNFT');
 
   // Deploy contract
   const nftContract = await nftContractFactory.deploy();
@@ -96,7 +96,7 @@ export async function deployDiamond() {
   const txnReceipt = await txn.wait();
 
   // Get the token id of the minted NFT (using our event)
-  const event = txnReceipt.events?.find((event) => event.event === 'Minted');
+  const event = txnReceipt.events?.find((event:any) => event.event === 'Minted');
   const tokenId = event?.args['tokenId'];
 
   console.log(

@@ -19,7 +19,7 @@ contract OnChainNFT is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721("OnChainNFT", "ONC") {}
+    // constructor() ERC721("OnChainNFT", "ONC") {}
 
     /* Converts an SVG to Base64 string */
     function svgToImageURI(string memory svg)

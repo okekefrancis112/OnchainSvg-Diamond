@@ -9,12 +9,18 @@ pragma solidity ^0.8.0;
 /******************************************************************************/
 
 import { LibDiamond } from "./libraries/LibDiamond.sol";
+import {AppStorage} from "./libraries/AppStorage.sol";
 import { IDiamondCut } from "./interfaces/IDiamondCut.sol";
+import { IERC721 } from "./interfaces/IERC721.sol";
 
-contract Diamond {    
+contract Diamond {   
+    AppStorage internal s; 
 
-    constructor(address _contractOwner, address _diamondCutFacet) payable {        
+    constructor(address _contractOwner, address _diamondCutFacet, string memory name_, string memory symbol_) payable {        
         LibDiamond.setContractOwner(_contractOwner);
+
+        LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
+        ds.supportedInterfaces[type(IERC721).interfaceId] = true;
 
         // Add the diamondCut external function from the diamondCutFacet
         IDiamondCut.FacetCut[] memory cut = new IDiamondCut.FacetCut[](1);
@@ -25,7 +31,11 @@ contract Diamond {
             action: IDiamondCut.FacetCutAction.Add, 
             functionSelectors: functionSelectors
         });
-        LibDiamond.diamondCut(cut, address(0), "");        
+        LibDiamond.diamondCut(cut, address(0), "");   
+
+        s._name = name_;
+        s._symbol = symbol_; 
+        s.MAX_SUPPLY = 5;      
     }
 
     // Find facet for function that is called and execute the
